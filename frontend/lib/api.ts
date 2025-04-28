@@ -1,4 +1,3 @@
-// lib/api.ts
 import axios from 'axios';
 import { getToken } from './auth';
 

@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// components/DrugCard.tsx
 'use client';
 
 import { useRouter } from 'next/navigation';

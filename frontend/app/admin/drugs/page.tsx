@@ -1,4 +1,3 @@
-// app/admin/drugs/page.tsx
 'use client';
 
 import { useState } from 'react';
