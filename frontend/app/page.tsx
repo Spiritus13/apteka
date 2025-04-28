@@ -6,6 +6,7 @@ import api from '../lib/api';
 import DrugCard from '@/components/DrugCard';
 
 export default function Home() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [drugs, setDrugs] = useState<any[]>([]);
 
   useEffect(() => {

@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import api from '@/lib/api';
 
 export default function DrugDetail({ params }: { params: { id: string } }) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [drug, setDrug] = useState<any>(null);
   const { id } = params;
 

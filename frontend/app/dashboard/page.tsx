@@ -1,27 +1,28 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import { useEffect, useState } from 'react';
-import { apiFetch } from '@/lib/api';
+import api from '@/lib/api';
 import { Drug } from '@/types';
 
 export default function Dashboard() {
   const [drugs, setDrugs] = useState<Drug[]>([]);
 
   useEffect(() => {
-    apiFetch<{ drugs: Drug[] }>('/listDrugs?page=1')
-      .then((data) => setDrugs(data.drugs || []))
+    api<{ drugs: Drug[] }>('/listDrugs?page=1')
+      .then((data: any) => setDrugs(data.drugs || []))
       .catch(console.error);
   }, []);
 
   async function orderDrug(idDrug: number) {
     const amount = prompt('Podaj ilość:') || '1';
     try {
-      await apiFetch('/orderDrug', {
+      await api('/orderDrug', {
         method: 'POST',
-        body: JSON.stringify({ id: idDrug, amount: parseFloat(amount) }),
+        data: { id: idDrug, amount: parseFloat(amount) },
       });
       alert('Zakupiono lek!');
-    } catch (e) {
+    } catch (e: any) {
       alert('Błąd: ' + e.message);
     }
   }

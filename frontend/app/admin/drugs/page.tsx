@@ -12,7 +12,8 @@ export default function AdminDrugs() {
     try {
       await api.post('/addDrug', { name: drugName, description });
       alert('Drug added successfully');
-    } catch (err) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (err:unknown) {
       alert('Error adding drug');
     }
   };

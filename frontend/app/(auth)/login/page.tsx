@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // app/login/page.tsx
 'use client';
 
@@ -17,7 +18,7 @@ export default function Login() {
       const { data } = await api.post('/login', { email, password });
       setToken(data.token);
       router.push('/');
-    } catch (err) {
+    } catch (err: unknown) {
       alert('Error logging in');
     }
   };

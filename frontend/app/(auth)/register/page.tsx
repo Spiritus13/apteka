@@ -17,7 +17,8 @@ export default function Register() {
       const { data } = await api.post('/register', { email, password });
       setToken(data.token);
       router.push('/');
-    } catch (err) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (err: unknown) {
       alert('Error registering');
     }
   };
