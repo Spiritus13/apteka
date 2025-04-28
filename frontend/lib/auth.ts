@@ -1,15 +1,26 @@
 // lib/auth.ts
-import { cookies } from 'next/headers';
 
-export async function getToken() {
-  const cookieStore = await cookies();
-  return cookieStore.get('token')?.value;
+export function getToken() {
+  if (typeof window !== 'undefined') {
+    // Dostęp do ciasteczek w przeglądarce
+    const match = document.cookie.match(/(^| )token=([^;]+)/);
+    if (match) {
+      return match[2]; // Zwróć wartość tokena
+    }
+  }
+  return null;
 }
-export async function setToken(token: string) {
-  const cookieStore = await cookies();
-  cookieStore.set('token', token, { path: '/' });
+
+export function setToken(token: string) {
+  if (typeof window !== 'undefined') {
+    // Ustawienie ciasteczka
+    document.cookie = `token=${token}; path=/;`;
+  }
 }
-export async function removeToken() {
-  const cookieStore = await cookies();
-  cookieStore.delete('token');
+
+export function removeToken() {
+  if (typeof window !== 'undefined') {
+    // Usunięcie ciasteczka
+    document.cookie = 'token=; path=/; max-age=0;';
+  }
 }
