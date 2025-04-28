@@ -19,7 +19,9 @@ export default function Orders() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [orders, setOrders] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [sortField, setSortField] = useState<'date' | 'status' | 'drugName'>('date');
+  const [sortField, setSortField] = useState<'date' | 'status' | 'drugName'>(
+    'date',
+  );
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
 
   useEffect(() => {
@@ -73,65 +75,69 @@ export default function Orders() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className='container mx-auto px-4 py-8'>
       <Card>
         <CardHeader>
-          <CardTitle className="text-3xl font-bold">Order History</CardTitle>
-          <p className="text-muted-foreground">
+          <CardTitle className='text-3xl font-bold'>Order History</CardTitle>
+          <p className='text-muted-foreground'>
             View and manage your past orders
           </p>
         </CardHeader>
         <CardContent>
           {loading ? (
-            <div className="text-center py-8">
-              <div className="animate-spin rounded-full h-12 w-12 border-4 border-primary border-t-transparent mx-auto"></div>
-              <p className="mt-4 text-muted-foreground">Loading orders...</p>
+            <div className='text-center py-8'>
+              <div className='animate-spin rounded-full h-12 w-12 border-4 border-primary border-t-transparent mx-auto'></div>
+              <p className='mt-4 text-muted-foreground'>Loading orders...</p>
             </div>
           ) : orders.length === 0 ? (
-            <div className="text-center py-8">
-              <p className="text-muted-foreground">No orders found</p>
-              <Button variant="outline" className="mt-4" onClick={() => window.location.reload()}>
+            <div className='text-center py-8'>
+              <p className='text-muted-foreground'>No orders found</p>
+              <Button
+                variant='outline'
+                className='mt-4'
+                onClick={() => window.location.reload()}
+              >
                 Refresh
               </Button>
             </div>
           ) : (
-            <div className="overflow-x-auto">
+            <div className='overflow-x-auto'>
               <Table>
                 <TableHeader>
                   <TableRow>
                     <TableHead>
                       <Button
-                        variant="ghost"
+                        variant='ghost'
                         onClick={() => handleSort('drugName')}
-                        className="flex items-center gap-2"
+                        className='flex items-center gap-2'
                       >
                         Medication
                         {sortField === 'drugName' && (
-                          <ArrowUpDown className="h-4 w-4" />
+                          <ArrowUpDown className='h-4 w-4' />
                         )}
                       </Button>
                     </TableHead>
                     <TableHead>
                       <Button
-                        variant="ghost"
+                        variant='ghost'
                         onClick={() => handleSort('date')}
-                        className="flex items-center gap-2"
+                        className='flex items-center gap-2'
                       >
                         Order Date
                         {sortField === 'date' && (
-                          <ArrowUpDown className="h-4 w-4" />
+                          <ArrowUpDown className='h-4 w-4' />
                         )}
                       </Button>
                     </TableHead>
                     <TableHead>
                       <Button
-                        variant="ghost"
+                        variant='ghost'
                         onClick={() => handleSort('status')}
-                        className="flex items-center gap-2"
+                        className='flex items-center gap-2'
                       >
                         Status
                         {sortField === 'status' && (
-                          <ArrowUpDown className="h-4 w-4" />
+                          <ArrowUpDown className='h-4 w-4' />
                         )}
                       </Button>
                     </TableHead>
@@ -142,7 +148,9 @@ export default function Orders() {
                 <TableBody>
                   {sortedOrders.map((order) => (
                     <TableRow key={order.id}>
-                      <TableCell className="font-medium">{order.drugName}</TableCell>
+                      <TableCell className='font-medium'>
+                        {order.drugName}
+                      </TableCell>
                       <TableCell>
                         {new Date(order.date).toLocaleDateString()}
                       </TableCell>
@@ -167,13 +175,13 @@ export default function Orders() {
       </Card>
 
       {!loading && orders.length > 0 && (
-        <div className="mt-8 text-center">
-          <p className="text-muted-foreground">
+        <div className='mt-8 text-center'>
+          <p className='text-muted-foreground'>
             Showing {orders.length} order{orders.length !== 1 ? 's' : ''}
           </p>
           <Button
-            variant="outline"
-            className="mt-4"
+            variant='outline'
+            className='mt-4'
             onClick={() => window.location.reload()}
           >
             Refresh Orders

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import { useState } from 'react';
@@ -33,36 +34,38 @@ export default function AdminDrugs() {
   };
 
   return (
-    <div className="container mx-auto py-10 flex justify-center">
-      <Card className="w-full max-w-lg p-6">
+    <div className='container mx-auto py-10 flex justify-center'>
+      <Card className='w-full max-w-lg p-6'>
         <CardHeader>
-          <CardTitle className="text-2xl text-center">Panel Admina - Dodaj Lek</CardTitle>
+          <CardTitle className='text-2xl text-center'>
+            Panel Admina - Dodaj Lek
+          </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="space-y-2">
-            <Label htmlFor="drugName">Nazwa leku</Label>
+        <CardContent className='space-y-6'>
+          <div className='space-y-2'>
+            <Label htmlFor='drugName'>Nazwa leku</Label>
             <Input
-              id="drugName"
-              type="text"
+              id='drugName'
+              type='text'
               value={drugName}
               onChange={(e) => setDrugName(e.target.value)}
-              placeholder="Wpisz nazwę leku"
+              placeholder='Wpisz nazwę leku'
             />
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="description">Opis</Label>
+          <div className='space-y-2'>
+            <Label htmlFor='description'>Opis</Label>
             <Input
-              id="description"
-              type="text"
+              id='description'
+              type='text'
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="Wpisz opis leku"
+              placeholder='Wpisz opis leku'
             />
           </div>
           <Button
             onClick={handleAddDrug}
             disabled={isLoading}
-            className="w-full"
+            className='w-full'
           >
             {isLoading ? 'Dodawanie...' : 'Dodaj Lek'}
           </Button>
