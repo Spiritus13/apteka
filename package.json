@@ -1,0 +1,21 @@
+{
+  "name": "apteka",
+  "version": "1.0.0",
+  "main": "",
+  "scripts": {
+    "dev:backend": "cd backend && node index.js",
+    "dev:frontend": "cd frontend && npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Spiritus13/apteka.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Spiritus13/apteka/issues"
+  },
+  "homepage": "https://github.com/Spiritus13/apteka#readme",
+  "description": ""
+}
