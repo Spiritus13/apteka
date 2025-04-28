@@ -1,22 +1,17 @@
-export async function apiFetch<T>(
-  url: string,
-  options: RequestInit = {},
-): Promise<T> {
-  const token =
-    typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+// lib/api.ts
+import axios from 'axios';
+import { getToken } from './auth';
 
-  const headers = {
-    ...(options.headers || {}),
-    Authorization: token ?? '',
-    'Content-Type': 'application/json',
-  };
+const api = axios.create({
+  baseURL: 'http://localhost:3030/api/v1',
+});
 
-  const res = await fetch(url, { ...options, headers });
-
-  if (!res.ok) {
-    const errorText = await res.text();
-    throw new Error(errorText);
+api.interceptors.request.use((config) => {
+  const token = getToken();
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
   }
+  return config;
+});
 
-  return res.json();
-}
+export default api;

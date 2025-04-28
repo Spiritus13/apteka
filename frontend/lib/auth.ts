@@ -1,11 +1,15 @@
-export function saveToken(token: string) {
-  localStorage.setItem('token', token);
-}
+// lib/auth.ts
+import { cookies } from 'next/headers';
 
-export function getToken(): string | null {
-  return localStorage.getItem('token');
+export async function getToken() {
+  const cookieStore = await cookies();
+  return cookieStore.get('token')?.value;
 }
-
-export function logout() {
-  localStorage.removeItem('token');
+export async function setToken(token: string) {
+  const cookieStore = await cookies();
+  cookieStore.set('token', token, { path: '/' });
+}
+export async function removeToken() {
+  const cookieStore = await cookies();
+  cookieStore.delete('token');
 }
